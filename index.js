@@ -1,5 +1,6 @@
 import "dotenv/config";
 import express from "express";
+import cors from "cors"; // Imported CORS
 import path from "path";
 import { fileURLToPath } from "url";
 import { MongoClient, ObjectId } from "mongodb";
@@ -9,6 +10,15 @@ const __dirname = path.dirname(__filename);
 
 const app = express();
 const port = process.env.PORT || 8888;
+
+// CORS Middleware Setup
+const allowedOrigin = process.env.NODE_ENV === "production"
+  ? "https://your-frontend-domain.com" // Replace with your actual frontend URL
+  : "*"; // Allow all in development
+
+app.use(cors({
+  origin: allowedOrigin === "*" ? true : allowedOrigin
+}));
 
 // Connect to MONGODB
 const client = new MongoClient(process.env.MONGODB_URI || "mongodb://localhost:27017");

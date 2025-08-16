@@ -1,0 +1,10 @@
+extends layout
+
+block layout-content
+  h1 Welcome to the Admin Dashboard
+  p Use the buttons below to manage different content sections.
+
+  .dashboard-buttons
+    a.btn.btn-add(href="/admin/about") Manage About
+    a.btn.btn-add(href="/admin/projects") Manage Projects
+    a.btn.btn-add(href="/admin/contacts") View Contact Messages

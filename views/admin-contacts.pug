@@ -1,0 +1,15 @@
+extends layout
+
+block layout-content
+  h1 Contact Messages
+
+  if contacts.length
+    ul
+      each contact in contacts
+        li
+          strong= contact.name
+          |  (#{contact.email}) at #{new Date(contact.submittedAt).toLocaleString()}
+          p= contact.message
+          hr
+  else
+    p No messages yet.

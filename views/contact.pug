@@ -1,0 +1,23 @@
+extends layout
+
+block layout-content
+  .contact-container
+    a.btn.btn-back(href="/admin") ← Back to Dashboard
+
+    h1 Contact Me
+
+    if success
+      p.contact-success Thank you for your message!
+
+    form.contact-form(method="POST", action="/contact")
+      label(for="name") Name
+      input(type="text", name="name", id="name", required)
+
+      label(for="email") Email
+      input(type="email", name="email", id="email", required)
+
+      label(for="message") Message
+      textarea(name="message", id="message", required)
+
+      button(type="submit") Send
+

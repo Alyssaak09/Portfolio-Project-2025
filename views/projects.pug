@@ -1,0 +1,60 @@
+extends layout
+
+block layout-content
+  a.btn.btn-back(href="/admin") ← Back to Dashboard
+  h1 Manage Projects
+
+  if editProject
+    h2 Edit Project
+    form(method="POST", action="/admin/projects")
+      input(type="hidden", name="id", value=editProject._id)
+      
+      label(for="title") Title
+      input(type="text", name="title", id="title", value=editProject.title, placeholder="Title", required)
+
+      label(for="description") Description
+      textarea(name="description", id="description", placeholder="Description", required)= editProject.description
+
+      label(for="link") Link
+      input(type="text", name="link", id="link", value=editProject.link, placeholder="Link", required)
+
+      label(for="skills") Skills (comma-separated)
+      input(type="text", name="skills", id="skills", placeholder="e.g. HTML, CSS, JS", value=(editProject.skills ? editProject.skills.join(', ') : ''))
+
+      .action-buttons
+        button.btn.btn-edit(type="submit") Update
+        a.btn.btn-delete(href="/admin/projects") Cancel
+  else
+    h2 Add New Project
+    form(method="POST", action="/admin/projects")
+      label(for="title") Title
+      input(type="text", name="title", id="title", placeholder="Title", required)
+
+      label(for="description") Description
+      textarea(name="description", id="description", placeholder="Description", required)
+
+      label(for="link") Link
+      input(type="text", name="link", id="link", placeholder="Link", required)
+
+      label(for="skills") Skills (comma-separated)
+      input(type="text", name="skills", id="skills", placeholder="e.g. HTML, CSS, JavaScript")
+
+      .action-buttons
+        button.btn.btn-add(type="submit") Add
+
+  hr
+
+  h2 Existing Projects
+  each project in projects
+    .entry-box
+      h3= project.title
+      p= project.description
+      if project.skills && project.skills.length
+        p
+          strong Skills:
+          |  #{project.skills.join(', ')}
+      p
+        a(href=project.link target="_blank") View
+      .action-buttons
+        a.btn.btn-edit(href=`/admin/projects?edit=${project._id}`) Edit
+        a.btn.btn-delete(href=`/admin/projects/delete?id=${project._id}` onclick="return confirm('Are you sure?')") Delete

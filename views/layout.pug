@@ -1,0 +1,17 @@
+doctype html 
+html(lang="en")
+  head 
+    meta(charset="utf-8")
+    title #{title} | Admin 
+    link(rel="stylesheet", href="/css/styles.css")
+  body 
+    header#header 
+      h2.site-name 
+        a(href="/") Admin Dashboard 
+      include includes/nav.pug
+      
+    main#main 
+      block layout-content
+
+    footer#footer
+      p &copy; Copyright Alyssa Austin Portfolio, 2025.

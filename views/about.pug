@@ -1,0 +1,31 @@
+extends layout
+
+block layout-content
+  a.btn.btn-back(href="/admin") ← Back to Dashboard
+  h1 Manage About
+  
+
+  if editAbout
+    h2 Edit About Entry
+    form(method="POST", action="/admin/about")
+      input(type="hidden", name="id", value=editAbout._id)
+      textarea(name="content" required)= editAbout.content
+      .action-buttons
+        button.btn.btn-edit(type="submit") Update
+        a.btn.btn-delete(href="/admin/about") Cancel
+  else
+    h2 Add About Info
+    form(method="POST", action="/admin/about")
+      textarea(name="content" placeholder="Write about info here" required)
+      .action-buttons
+        button.btn.btn-add(type="submit") Add
+
+  hr
+
+  h2 Existing Entries
+  each about in abouts
+    .entry-box
+      p= about.content
+      .action-buttons
+        a.btn.btn-edit(href=`/admin/about?edit=${about._id}`) Edit
+        a.btn.btn-delete(href=`/admin/about/delete?id=${about._id}` onclick="return confirm('Are you sure?')") Delete

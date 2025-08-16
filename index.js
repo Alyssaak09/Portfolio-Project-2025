@@ -12,13 +12,23 @@ const app = express();
 const port = process.env.PORT || 8888;
 
 // CORS Middleware Setup
-const allowedOrigin = process.env.NODE_ENV === "production"
-  ? "https://your-frontend-domain.com" // Replace with your actual frontend URL
-  : "*"; // Allow all in development
+const allowedOrigins = process.env.NODE_ENV === "production"
+  ? ["https://your-frontend-domain.com"] // Your production frontend domain
+  : ["http://localhost:5173", "http://127.0.0.1:5173"]; // Local dev URLs
 
 app.use(cors({
-  origin: allowedOrigin === "*" ? true : allowedOrigin
+  origin: function(origin, callback) {
+    // Allow requests with no origin like Postman, curl, etc.
+    if (!origin) return callback(null, true);
+
+    if (allowedOrigins.indexOf(origin) === -1) {
+      const msg = `The CORS policy for this site does not allow access from the origin ${origin}.`;
+      return callback(new Error(msg), false);
+    }
+    return callback(null, true);
+  }
 }));
+
 
 // Connect to MONGODB
 const client = new MongoClient(process.env.MONGODB_URI || "mongodb://localhost:27017");

@@ -1,0 +1,11 @@
+GET http://localhost:8888/api/about 
+
+###
+
+GET http://localhost:8888/api/projects
+
+###
+GET http://localhost:8888/api/contacts
+
+###
+POST http://localhost:8888/api/contacts

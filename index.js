@@ -12,31 +12,8 @@ const app = express();
 const port = process.env.PORT || 8888;
 
 // CORS Middleware Setup
-const allowedOrigins = [
-  "http://localhost:5173",
-  "http://127.0.0.1:5173"
-  // Add your production frontend domain here when it's deployed, e.g.:
-  // "https://your-frontend-domain.com"
-];
 
-app.use(cors({
-  origin: function (origin, callback) {
-    // Allow requests with no origin (like Postman, curl, server-to-server requests)
-    if (!origin) return callback(null, true);
-
-    // Allow requests from origins in the allowedOrigins array
-    if (allowedOrigins.includes(origin)) {
-      return callback(null, true);
-    }
-
-    // If origin is not allowed, block the request
-    const msg = `Blocked by CORS policy: ${origin}`;
-    console.warn(msg); // Optional: log blocked origins for debugging
-    return callback(new Error(msg), false);
-  }
-}));
-
-
+app.use(cors());
 
 // Connect to MONGODB
 const client = new MongoClient(process.env.MONGODB_URI || "mongodb://localhost:27017");

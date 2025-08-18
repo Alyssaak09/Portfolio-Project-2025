@@ -61,6 +61,7 @@ Admin dashboard includes:
 |--------|--------------------|-------------------------|
 | GET    | `/api/about`    | Get all content entries |
 | GET    | `/api/projects`      | Get all project entries   |
+| POST    | `/api/contacts`      | Post all message entries   |
 
 ---
 

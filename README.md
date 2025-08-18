@@ -6,7 +6,7 @@ This is the backend for my full-stack portfolio website, built using **Node.js**
 
 ## What I Did
 
-- Created two MongoDB collections: `projects` and `skills`
+- Created three MongoDB collections: `about`, `projects` and `contacts`
 - Built admin pages using **Pug** to add and delete entries from both collections
 - Styled admin dashboard with custom CSS using a lightweight framework (customized Bootstrap)
 - Made pages responsive

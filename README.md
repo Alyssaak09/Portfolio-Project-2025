@@ -29,7 +29,7 @@ This is the backend for my full-stack portfolio website, built using **Node.js**
 ## Collections
 
 1. **About**
-   - decription
+   - description
 
 2. **Projects**
    - title

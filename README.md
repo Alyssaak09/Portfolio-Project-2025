@@ -49,7 +49,7 @@ This is the backend for my full-stack portfolio website, built using **Node.js**
 ## Admin Interface
 
 Admin dashboard includes:
-- Pages to add and delete data for both `projects` and `skills`
+- Pages to add and delete data for both `about`, `projects` and `contacts`
 - Accessible only to admins (not public)
 - Responsive and styled UI for ease of use
 
@@ -59,8 +59,8 @@ Admin dashboard includes:
 
 | Method | Endpoint           | Description             |
 |--------|--------------------|-------------------------|
-| GET    | `/api/projects`    | Get all project entries |
-| GET    | `/api/skills`      | Get all skill entries   |
+| GET    | `/api/about`    | Get all content entries |
+| GET    | `/api/projects`      | Get all project entries   |
 
 ---
 
